@@ -9,7 +9,7 @@ npm run build && npm start
 ```
 
 ## Structure
-- `app/page.jsx` — page composition (Hero → Solutions → Products → Get started → Footer)
+- `app/[lang]/page.jsx` — page composition, served at `/en` and `/ar` (`proxy.js` redirects `/` by browser language) (Hero → Solutions → Products → Get started → Footer)
 - `components/` — one component per section; `LeadForm.jsx` powers both forms
 - `components/Experience.jsx` — background scene, nav state, gentle fade-in reveals
 - `lib/scene.js` — WebGL scene (planet horizon, giant word, embers). Scroll poses live in `KEYS`.
@@ -27,3 +27,4 @@ from `scripts/build-logo.mjs` (text is outlined, so the SVGs need no fonts).
 - Product examples in `components/Work.jsx` are placeholders — swap in real case studies.
 - Stats (hero), rating (get started) and contact details (footer) are placeholders.
 - Hero word: `word` option in `createScene` (`lib/scene.js`), default `PHOENIX`.
+- Copy lives in `lib/i18n/en.js` and `lib/i18n/ar.js` (Arabic is written natively, not translated line by line).

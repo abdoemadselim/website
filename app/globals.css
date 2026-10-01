@@ -773,3 +773,6 @@ main, .footer { position: relative; z-index: 2; }
 [dir='rtl'] .eyebrow { text-transform: none; }
 [dir='rtl'] input[type='email'], [dir='rtl'] input[type='tel'] { direction: ltr; text-align: right; }
 [dir='rtl'] .footer__giant, [dir='rtl'] .hero__giant { direction: ltr; }
+/* numbers like "-38%" keep their natural order; mixed values like "9 أسابيع" follow their own script */
+.product__metrics strong { unicode-bidi: plaintext; }
+[dir='rtl'] .product__metrics strong { text-align: right; }
