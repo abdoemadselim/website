@@ -23,20 +23,12 @@ export default function Experience() {
     let scene = null;
 
     /* ---------- 3D scene ---------- */
-    const sections = () => [
-      { el: $('#hero'), key: 'hero' },
-      { el: $('#services'), key: 'services' },
-      { el: $('#work'), key: 'work' },
-      { el: $('#contact'), key: 'contact' },
-    ];
     if (!hasWebGL()) document.documentElement.classList.add('no-webgl');
     else {
       import('@/lib/scene')
         .then(({ createScene }) => {
           if (disposed) return;
           scene = createScene($('#scene'), { reducedMotion, isMobile });
-          scene.measure(sections());
-          scene.setScroll(window.scrollY);
         })
         .catch((err) => {
           console.warn('[phoenixtechs] WebGL scene disabled:', err);
@@ -46,15 +38,8 @@ export default function Experience() {
 
     /* ---------- Scroll: nav state + scene ---------- */
     const nav = $('#nav');
-    const onScroll = () => {
-      nav.classList.toggle('is-scrolled', window.scrollY > 40);
-      scene?.setScroll(window.scrollY);
-    };
-    const onResize = () => scene?.measure(sections());
+    const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 40);
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onResize);
-    window.addEventListener('load', onResize);
-    document.fonts?.ready.then(onResize);
     onScroll();
 
     // highlight the nav link of the section in view
@@ -82,8 +67,6 @@ export default function Experience() {
     return () => {
       disposed = true;
       window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onResize);
-      window.removeEventListener('load', onResize);
       spy.disconnect();
       reveal.disconnect();
       scene?.destroy();

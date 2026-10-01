@@ -95,51 +95,50 @@ function ChatMock() {
 }
 
 const PRODUCTS = [
-  { tint: '255, 92, 54', Mock: DashMock, tags: ['Fintech · SaaS', 'Web platform'], name: 'Ledgerly', text: 'Finance automation platform that reconciles invoices, payments and bank feeds in real time.', metrics: [['-38%', 'month-end close time'], ['9 wks', 'to launch']] },
-  { tint: '255, 170, 70', Mock: PhoneMock, tags: ['Retail · E-commerce', 'Mobile app'], name: 'Souq Go', text: 'Shopping app with one-tap checkout, personalised feeds and same-day delivery tracking.', metrics: [['2.4×', 'conversion vs. web'], ['4.8★', 'App Store rating']] },
-  { tint: '120, 150, 255', Mock: CalendarMock, tags: ['Healthcare', 'Web + mobile'], name: 'Clinic OS', text: 'Booking, patient records and automated reminders for a network of 14 clinics.', metrics: [['-61%', 'no-show rate'], ['14', 'clinics onboarded']] },
-  { tint: '200, 90, 255', Mock: ChatMock, tags: ['Customer support', 'AI agent'], name: 'Atlas AI', text: 'AI copilot that answers customers, takes actions in the CRM and escalates edge cases to humans.', metrics: [['70%', 'tickets auto-resolved'], ['24/7', 'in 2 languages']] },
+  { tint: '255, 92, 54', Mock: DashMock, name: 'Ledgerly' },
+  { tint: '255, 170, 70', Mock: PhoneMock, name: 'Souq Go' },
+  { tint: '120, 150, 255', Mock: CalendarMock, name: 'Clinic OS' },
+  { tint: '200, 90, 255', Mock: ChatMock, name: 'Atlas AI' },
 ];
 
-export default function Work() {
+export default function Work({ t }) {
   return (
     <section className="work" id="work">
       <div className="section work__inner">
         <div className="container work__head">
           <div>
-            <span className="eyebrow reveal"><i className="dot" /> Products like yours</span>
+            <span className="eyebrow reveal"><i className="dot" /> {t.eyebrow}</span>
             <h2 className="section__title reveal">
-              Real products. <em>Measurable</em> results.
+              {t.title[0]}<em>{t.title[1]}</em>{t.title[2]}
             </h2>
           </div>
-          <p className="section__lede reveal">
-            See what your product could look like, from fintech and retail to healthcare and support. Each one went live in under 12 weeks.
-          </p>
+          <p className="section__lede reveal">{t.lede}</p>
         </div>
 
         <div className="container">
           <div className="work__grid">
-            {PRODUCTS.map(({ tint, Mock, tags, name, text, metrics }) => (
-              <article key={name} className="product reveal" style={{ '--tint': tint }}>
-                <div className="product__stage"><Mock /></div>
-                <div className="product__info">
-                  <div className="product__meta">{tags.map((t) => <span key={t}>{t}</span>)}</div>
-                  <h3>{name}</h3>
-                  <p>{text}</p>
-                  <div className="product__metrics">
-                    {metrics.map(([v, l]) => <div key={l}><strong>{v}</strong><small>{l}</small></div>)}
+            {PRODUCTS.map(({ tint, Mock, name }, i) => {
+              const { tags, text, metrics } = t.products[i];
+              return (
+                <article key={name} className="product reveal" style={{ '--tint': tint }}>
+                  <div className="product__stage"><Mock /></div>
+                  <div className="product__info">
+                    <div className="product__meta">{tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+                    <h3>{name}</h3>
+                    <p>{text}</p>
+                    <div className="product__metrics">
+                      {metrics.map(([v, l]) => <div key={l}><strong>{v}</strong><small>{l}</small></div>)}
+                    </div>
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
             <article className="product product--cta reveal">
               <div>
-                <span className="eyebrow"><i className="dot" /> Your product next</span>
-                <h3>Have an idea worth building?</h3>
-                <p>Get your fixed-price proposal in 48 hours.</p>
-                <a href="#contact" className="btn btn--ember">
-                  Start your project
-                </a>
+                <span className="eyebrow"><i className="dot" /> {t.cta.eyebrow}</span>
+                <h3>{t.cta.title}</h3>
+                <p>{t.cta.text}</p>
+                <a href="#contact" className="btn btn--ember">{t.cta.button}</a>
               </div>
             </article>
           </div>

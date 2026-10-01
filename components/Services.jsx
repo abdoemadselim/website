@@ -9,42 +9,33 @@ const ICONS = {
 };
 
 const SERVICES = [
-  { icon: 'web', wide: true, title: 'Custom Web Platforms & SaaS', text: 'Customer portals, internal tools, dashboards and multi-tenant SaaS, engineered for speed, security and scale from day one.', tags: ['Next.js', 'Node', 'Postgres', 'Multi-tenant'] },
-  { icon: 'mobile', title: 'Mobile Apps', text: 'Native-quality iOS & Android apps your customers keep on their home screen.', tags: ['iOS', 'Android', 'Flutter'] },
-  { icon: 'ai', title: 'AI & Automation', text: 'AI copilots, smart search and workflow automation that cut manual work by hours a day.', tags: ['LLMs', 'RAG', 'Agents'] },
-  { icon: 'design', title: 'UI/UX & Product Design', text: 'Research-led interfaces and design systems that convert visitors into customers.', tags: ['Figma', 'Prototyping', 'Design systems'] },
-  { icon: 'commerce', title: 'E-commerce', text: 'High-converting stores with payments, logistics and ERP integrations built in.', tags: ['Shopify', 'Headless', 'Payments'] },
-  { icon: 'cloud', title: 'Cloud & DevOps', text: 'Reliable, cost-optimised infrastructure with CI/CD, monitoring and 99.9% uptime.', tags: ['AWS', 'GCP', 'Kubernetes'] },
+  { icon: 'web', wide: true, tags: ['Next.js', 'Node', 'Postgres', 'Multi-tenant'] },
+  { icon: 'mobile', tags: ['iOS', 'Android', 'Flutter'] },
+  { icon: 'ai', tags: ['LLMs', 'RAG', 'Agents'] },
+  { icon: 'design', tags: ['Figma', 'Prototyping', 'Design systems'] },
+  { icon: 'commerce', tags: ['Shopify', 'Headless', 'Payments'] },
+  { icon: 'cloud', tags: ['AWS', 'GCP', 'Kubernetes'] },
 ];
 
-const PROCESS = [
-  ['01', 'Discover', 'Map your goals, users and scope in a free workshop.'],
-  ['02', 'Design', 'Test a clickable prototype of your product in week one.'],
-  ['03', 'Build', 'See your product grow with a live demo every Friday.'],
-  ['04', 'Launch & grow', 'Go live, measure and improve, with support on call.'],
-];
-
-export default function Services() {
+export default function Services({ t }) {
   return (
     <section className="section services" id="services">
       <div className="container">
         <div className="section__head">
-          <span className="eyebrow reveal"><i className="dot" /> Solutions for you</span>
+          <span className="eyebrow reveal"><i className="dot" /> {t.eyebrow}</span>
           <h2 className="section__title reveal">
-            Everything you need to <em>build, launch</em> and scale.
+            {t.title[0]}<em>{t.title[1]}</em>{t.title[2]}
           </h2>
-          <p className="section__lede reveal">
-            One senior team for your strategy, design, engineering and growth. No hand-offs, no middlemen.
-          </p>
+          <p className="section__lede reveal">{t.lede}</p>
         </div>
 
         <div className="bento">
-          {SERVICES.map((s) => (
-            <article key={s.title} className={`svc reveal${s.wide ? ' svc--wide' : ''}`}>
+          {SERVICES.map((s, i) => (
+            <article key={s.icon} className={`svc reveal${s.wide ? ' svc--wide' : ''}`}>
               <div className="svc__glow" />
               <div className="svc__icon"><svg viewBox="0 0 24 24">{ICONS[s.icon]}</svg></div>
-              <h3>{s.title}</h3>
-              <p>{s.text}</p>
+              <h3>{t.items[i].title}</h3>
+              <p>{t.items[i].text}</p>
               <ul className="tags">{s.tags.map((t) => <li key={t}>{t}</li>)}</ul>
               {s.wide && (
                 <div className="svc__visual" aria-hidden="true">
@@ -61,8 +52,8 @@ export default function Services() {
         </div>
 
         <ol className="process" id="process">
-          {PROCESS.map(([n, title, text]) => (
-            <li key={n} className="reveal"><span>{n}</span><h4>{title}</h4><p>{text}</p></li>
+          {t.process.map(([title, text], i) => (
+            <li key={i} className="reveal"><span>{String(i + 1).padStart(2, '0')}</span><h4>{title}</h4><p>{text}</p></li>
           ))}
         </ol>
       </div>
