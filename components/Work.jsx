@@ -138,7 +138,7 @@ export default function Work() {
                 <h3>Have an idea worth building?</h3>
                 <p>Get your fixed-price proposal in 48 hours.</p>
                 <a href="#contact" className="btn btn--ember">
-                  Start your project <span className="btn__arrow" aria-hidden="true">→</span>
+                  Start your project
                 </a>
               </div>
             </article>

@@ -24,7 +24,7 @@ export default function Nav() {
           ))}
         </nav>
         <a href="#contact" className="btn btn--ember btn--sm nav__cta">
-          Book a call <span className="btn__arrow" aria-hidden="true">→</span>
+          Book a call
         </a>
         <button
           className="nav__burger"
@@ -40,7 +40,7 @@ export default function Nav() {
         {LINKS.map(([href, label]) => (
           <a key={href} href={href} onClick={close}>{label}</a>
         ))}
-        <a href="#contact" className="btn btn--ember" onClick={close}>Book a free call →</a>
+        <a href="#contact" className="btn btn--ember" onClick={close}>Book a free call</a>
       </div>
     </header>
   );

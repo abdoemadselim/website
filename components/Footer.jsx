@@ -36,7 +36,7 @@ export default function Footer() {
             <a href="mailto:hello@phoenixtechs.com">hello@phoenixtechs.com</a>
             <a href="tel:+971500000000">+971 50 000 0000</a>
             <span>Dubai · Cairo · Remote</span>
-            <a href="#contact" className="btn btn--ghost btn--sm">Book a call →</a>
+            <a href="#contact" className="btn btn--ghost btn--sm">Book a call</a>
           </div>
         </div>
         <div className="footer__giant" aria-hidden="true">PHOENIXTECHS</div>

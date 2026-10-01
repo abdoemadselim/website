@@ -84,7 +84,6 @@ export default function LeadForm({ variant = 'hero', title, subtitle, cta, succe
   const submit = (cls = '') => (
     <button type="submit" className={`btn btn--ember ${cls}`} disabled={status === 'sending'}>
       <span className="btn__label">{open || full ? label : 'Get started'}</span>
-      <span className="btn__arrow" aria-hidden="true">→</span>
     </button>
   );
   const serviceSelect = (placeholder) => (

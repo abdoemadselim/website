@@ -117,35 +117,25 @@ main, .footer { position: relative; z-index: 2; }
 }
 
 .btn {
-  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 15px 26px;
-  border: 0;
-  border-radius: 999px;
+  padding: 14px 24px;
+  border: 1px solid transparent;
+  border-radius: 10px;
   font-weight: 600;
   font-size: 15px;
-  letter-spacing: 0.01em;
+  line-height: 1.2;
   cursor: pointer;
-  transition: box-shadow 0.3s ease, background 0.3s, filter 0.3s;
-  isolation: isolate;
-  overflow: hidden;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
   white-space: nowrap;
 }
-.btn--sm { padding: 11px 18px; font-size: 14px; }
+.btn--sm { padding: 10px 18px; font-size: 14px; }
 .btn--block { width: 100%; }
-.btn--ember {
-  color: #1a0805;
-  background: var(--grad-fire);
-  box-shadow: 0 10px 30px -10px rgba(255, 90, 54, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.45);
-}
-.btn--ember:hover { filter: brightness(1.06); box-shadow: 0 16px 44px -10px rgba(255, 90, 54, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
-.btn--ghost { color: var(--cream); background: rgba(255, 255, 255, 0.04); border: 1px solid var(--line-2); }
-.btn--ghost:hover { background: rgba(255, 255, 255, 0.09); }
-.btn__arrow { transition: transform 0.35s var(--ease-out); }
-.btn:hover .btn__arrow { transform: translateX(2px); }
+.btn--ember { color: #fff; background: #d9412b; }
+.btn--ember:hover { background: #c23824; }
+.btn--ghost { color: var(--cream); background: transparent; border-color: var(--line-2); }
+.btn--ghost:hover { background: rgba(255, 255, 255, 0.06); }
 .btn:focus-visible, .pill:focus-visible, a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
 .btn[disabled] { opacity: 0.7; cursor: progress; }
 
@@ -751,7 +741,7 @@ main, .footer { position: relative; z-index: 2; }
 /* Bayzat-style progressive form: email first, the rest expands on interaction */
 .email-step { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: end; }
 .lead-form--step.is-open .email-step { grid-template-columns: 1fr; }
-.email-step__btn { height: 50px; }
+.email-step__btn { height: 48px; }
 .lead-form__more {
   display: grid;
   grid-template-rows: 0fr;
