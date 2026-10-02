@@ -107,7 +107,7 @@ export default function Work({ t }) {
       <div className="section work__inner">
         <div className="container work__head">
           <div>
-            <span className="eyebrow reveal"><i className="dot" /> {t.eyebrow}</span>
+            {t.eyebrow && <span className="eyebrow reveal"><i className="dot" /> {t.eyebrow}</span>}
             <h2 className="section__title reveal">
               {t.title[0]}<em>{t.title[1]}</em>{t.title[2]}
             </h2>
@@ -135,7 +135,7 @@ export default function Work({ t }) {
             })}
             <article className="product product--cta reveal">
               <div>
-                <span className="eyebrow"><i className="dot" /> {t.cta.eyebrow}</span>
+                {t.cta.eyebrow && <span className="eyebrow"><i className="dot" /> {t.cta.eyebrow}</span>}
                 <h3>{t.cta.title}</h3>
                 <p>{t.cta.text}</p>
                 <a href="#contact" className="btn btn--ember">{t.cta.button}</a>

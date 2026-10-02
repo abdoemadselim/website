@@ -9,12 +9,12 @@ const ICONS = {
 };
 
 const SERVICES = [
-  { icon: 'web', wide: true, tags: ['Next.js', 'Node', 'Postgres', 'Multi-tenant'] },
-  { icon: 'mobile', tags: ['iOS', 'Android', 'Flutter'] },
-  { icon: 'ai', tags: ['LLMs', 'RAG', 'Agents'] },
-  { icon: 'design', tags: ['Figma', 'Prototyping', 'Design systems'] },
-  { icon: 'commerce', tags: ['Shopify', 'Headless', 'Payments'] },
-  { icon: 'cloud', tags: ['AWS', 'GCP', 'Kubernetes'] },
+  { icon: 'web', wide: true },
+  { icon: 'mobile' },
+  { icon: 'ai' },
+  { icon: 'design' },
+  { icon: 'commerce' },
+  { icon: 'cloud' },
 ];
 
 export default function Services({ t }) {
@@ -22,7 +22,7 @@ export default function Services({ t }) {
     <section className="section services" id="services">
       <div className="container">
         <div className="section__head">
-          <span className="eyebrow reveal"><i className="dot" /> {t.eyebrow}</span>
+          {t.eyebrow && <span className="eyebrow reveal"><i className="dot" /> {t.eyebrow}</span>}
           <h2 className="section__title reveal">
             {t.title[0]}<em>{t.title[1]}</em>{t.title[2]}
           </h2>
@@ -32,11 +32,10 @@ export default function Services({ t }) {
         <div className="bento">
           {SERVICES.map((s, i) => (
             <article key={s.icon} className={`svc reveal${s.wide ? ' svc--wide' : ''}`}>
-              <div className="svc__glow" />
               <div className="svc__icon"><svg viewBox="0 0 24 24">{ICONS[s.icon]}</svg></div>
               <h3>{t.items[i].title}</h3>
               <p>{t.items[i].text}</p>
-              <ul className="tags">{s.tags.map((t) => <li key={t}>{t}</li>)}</ul>
+              {s.tags && <ul className="tags">{s.tags.map((t) => <li key={t}>{t}</li>)}</ul>}
               {s.wide && (
                 <div className="svc__visual" aria-hidden="true">
                   <div className="mini-win">
