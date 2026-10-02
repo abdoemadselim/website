@@ -5,7 +5,7 @@ export default function Hero({ t, form }) {
     <section className="hero" id="hero">
       <canvas id="scene" aria-hidden="true" />
       <div className="hero__giant" aria-hidden="true">
-        <span>PHOENIX</span>
+        <span>PHOENIXTECHS</span>
       </div>
 
       <div className="container hero__grid">
