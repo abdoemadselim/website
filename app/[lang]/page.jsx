@@ -6,6 +6,7 @@ import Work from '@/components/Work';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import Experience from '@/components/Experience';
+import TechStack from '@/components/TechStack';
 import { getDictionary, hasLocale } from '@/lib/i18n';
 
 export default async function Home({ params }) {
@@ -19,6 +20,7 @@ export default async function Home({ params }) {
       <Nav t={t.nav} lang={lang} />
       <main id="top">
         <Hero t={t.hero} form={t.form} />
+        <TechStack />
         <Services t={t.services} />
         <Work t={t.work} />
         <Contact t={t.contact} form={t.form} />

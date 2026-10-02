@@ -348,6 +348,32 @@ main, .footer { position: relative; z-index: 2; }
 
 
 /* ==========================================================================
+   Tech strip
+   ========================================================================== */
+.tech-strip {
+  position: relative;
+  z-index: 2;
+  padding-block: clamp(32px, 5vh, 56px);
+  border-bottom: 1px solid var(--line-2);
+}
+.tech-strip__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(28px, 5vw, 64px);
+  flex-wrap: wrap;
+}
+.tech-strip__icon {
+  display: grid;
+  place-items: center;
+  color: var(--cream-3);
+  opacity: 0.45;
+  transition: opacity 0.3s;
+}
+.tech-strip__icon:hover { opacity: 0.8; }
+.tech-strip__icon svg { width: clamp(28px, 3vw, 40px); height: auto; }
+
+/* ==========================================================================
    Sections
    ========================================================================== */
 .section { position: relative; padding-block: clamp(90px, 14vh, 160px); }
