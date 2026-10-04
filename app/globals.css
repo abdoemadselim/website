@@ -263,7 +263,7 @@ main, .footer { position: relative; z-index: 2; }
   letter-spacing: 0.02em;
   text-wrap: balance;
 }
-.hero__title .line { display: block; white-space: nowrap; }
+.hero__title .line { display: block; }
 @media (max-width: 640px) { .hero__title { font-size: 8.2vw; } }
 .hero__title em {
   font-size: 1.06em;
