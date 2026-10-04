@@ -21,7 +21,7 @@ export default async function Home({ params }) {
       <main id="top">
         <Hero t={t.hero} form={t.form} />
         <Services t={t.services} />
-        <Work t={t.work} />
+        <Work t={t.work} lang={lang} />
         <Contact t={t.contact} form={t.form} />
       </main>
       <Footer t={t.footer} />
