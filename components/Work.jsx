@@ -40,7 +40,7 @@ export default function Work({ t, lang }) {
                 {t.cta.eyebrow && <span className="eyebrow"><i className="dot" /> {t.cta.eyebrow}</span>}
                 <h3>{t.cta.title}</h3>
                 <p>{t.cta.text}</p>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 8 }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 8, justifyContent: 'center' }}>
                   <a href="#contact" className="btn btn--ember">{t.cta.button}</a>
                   <a href={`/${lang}/projects`} className="btn btn--ghost">{t.viewAll} →</a>
                 </div>
