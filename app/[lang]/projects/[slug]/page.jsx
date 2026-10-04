@@ -106,7 +106,7 @@ export default async function ProjectDetailPage({ params }) {
             {/* Screens */}
             <section className="project-screens">
               <h2 className="project-screens__title">{t.projects.screens}</h2>
-              <div className="project-screens__grid">
+              <div className="project-screens__gallery">
                 {PROJECT_SCREENS[index].map((Screen, i) => (
                   <div key={i} className="project-screen" style={{ '--tint': tint }}>
                     <div className="project-screen__frame"><Screen /></div>
