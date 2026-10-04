@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import { PROJECT_SCREENS } from '@/components/Mocks';
 import { locales, getDictionary, hasLocale, projectSlugs, getProjectBySlug } from '@/lib/i18n';
 
 const PRODUCT_TINTS = [
@@ -56,6 +57,11 @@ export default async function ProjectDetailPage({ params }) {
               <Link href={`/${lang}/projects`} className="projects-back">← {t.projects.backToProjects}</Link>
               <h1 className="project-hero__title" style={{ marginTop: 24 }}>{name}</h1>
               <p className="project-hero__lede">{detail.hero}</p>
+              {project.liveUrl && (
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn--ember project-hero__live">
+                  {t.projects.visitLive} ↗
+                </a>
+              )}
               <div className="project-hero__metrics">
                 {detail.metrics.map(([v, l]) => (
                   <div key={l} className="project-hero__metric">
@@ -96,6 +102,19 @@ export default async function ProjectDetailPage({ params }) {
                 </div>
               </div>
             </div>
+
+            {/* Screens */}
+            <section className="project-screens">
+              <h2 className="project-screens__title">{t.projects.screens}</h2>
+              <div className="project-screens__grid">
+                {PROJECT_SCREENS[index].map((Screen, i) => (
+                  <div key={i} className="project-screen" style={{ '--tint': tint }}>
+                    <div className="project-screen__frame"><Screen /></div>
+                    <p className="project-screen__label">{project.screens[i]}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
 
             {/* CTA */}
             <div className="project-cta card-glass">
