@@ -114,15 +114,7 @@ export default function LeadForm({ variant = 'hero', t, title, subtitle, cta, su
             {field('phone', t.phone, <input type="tel" name="phone" autoComplete="tel" placeholder="+971 50 123 4567" required />)}
             {field('company', t.company, <input type="text" name="company" autoComplete="organization" placeholder={t.companyPlaceholder} />)}
           </div>
-          <div className="field-row">
-            {field('service', t.service, serviceSelect(t.select))}
-            {field('budget', t.budget, (
-              <select name="budget" defaultValue="">
-                <option value="" disabled>{t.select}</option>
-                {t.budgets.map((s) => <option key={s}>{s}</option>)}
-              </select>
-            ))}
-          </div>
+          {field('service', t.service, serviceSelect(t.select))}
           {field('message', t.message, (
             <textarea name="message" rows={3} placeholder={t.messagePlaceholder} />
           ))}

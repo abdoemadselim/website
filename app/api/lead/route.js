@@ -22,7 +22,6 @@ export async function POST(req) {
     phone: clip(body.phone, 40),
     company: clip(body.company, 160),
     service: clip(body.service, 80),
-    budget: clip(body.budget, 40),
     message: clip(body.message),
     source: clip(body.source, 40),
     page: clip(body.page, 300),
