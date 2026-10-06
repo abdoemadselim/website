@@ -4,15 +4,6 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import { getDictionary, hasLocale } from '@/lib/i18n';
 
-const PRODUCT_TINTS = [
-  '255, 92, 54',
-  '255, 170, 70',
-  '120, 150, 255',
-  '200, 90, 255',
-];
-
-const PRODUCT_NAMES = ['Ledgerly', 'Souq Go', 'Clinic OS', 'Atlas AI'];
-
 export async function generateMetadata({ params }) {
   const { lang } = await params;
   const t = getDictionary(lang);
@@ -42,15 +33,15 @@ export default async function ProjectsPage({ params }) {
               <p className="section__lede">{t.projects.lede}</p>
             </div>
             <div className="projects-grid">
-              {t.work.products.map((product, i) => (
+              {t.work.products.map((product) => (
                 <Link
                   key={product.slug}
                   href={`/${lang}/projects/${product.slug}`}
                   className="project-card"
-                  style={{ '--tint': PRODUCT_TINTS[i] }}
+                  style={{ '--tint': product.tint }}
                 >
                   <div className="project-card__top">
-                    <h2>{PRODUCT_NAMES[i]}</h2>
+                    <h2>{product.name}</h2>
                     <p>{product.detail.hero}</p>
                   </div>
                   <div className="project-card__metrics">

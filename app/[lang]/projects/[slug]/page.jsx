@@ -5,15 +5,6 @@ import Footer from '@/components/Footer';
 import { PROJECT_SCREENS } from '@/components/Mocks';
 import { locales, getDictionary, hasLocale, projectSlugs, getProjectBySlug } from '@/lib/i18n';
 
-const PRODUCT_TINTS = [
-  '255, 92, 54',
-  '255, 170, 70',
-  '120, 150, 255',
-  '200, 90, 255',
-];
-
-const PRODUCT_NAMES = ['Ledgerly', 'Souq Go', 'Clinic OS', 'Atlas AI'];
-
 export const dynamicParams = false;
 export function generateStaticParams() {
   return locales.flatMap((lang) =>
@@ -27,7 +18,7 @@ export async function generateMetadata({ params }) {
   const project = getProjectBySlug(lang, slug);
   if (!project) return {};
   return {
-    title: `${PRODUCT_NAMES[project.index]} — PhoenixTechs`,
+    title: `${project.name} — PhoenixTechs`,
     description: project.detail.hero,
   };
 }
@@ -39,9 +30,7 @@ export default async function ProjectDetailPage({ params }) {
   const project = getProjectBySlug(lang, slug);
   if (!project) notFound();
 
-  const { index, detail } = project;
-  const tint = PRODUCT_TINTS[index];
-  const name = PRODUCT_NAMES[index];
+  const { index, detail, name, tint } = project;
   const nextIndex = (index + 1) % t.work.products.length;
   const nextProduct = t.work.products[nextIndex];
 
@@ -104,17 +93,19 @@ export default async function ProjectDetailPage({ params }) {
             </div>
 
             {/* Screens */}
-            <section className="project-screens">
-              <h2 className="project-screens__title">{t.projects.screens}</h2>
-              <div className="project-screens__gallery">
-                {PROJECT_SCREENS[index].map((Screen, i) => (
-                  <div key={i} className="project-screen" style={{ '--tint': tint }}>
-                    <div className="project-screen__frame"><Screen /></div>
-                    <p className="project-screen__label">{project.screens[i]}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
+            {PROJECT_SCREENS[index] && (
+              <section className="project-screens">
+                <h2 className="project-screens__title">{t.projects.screens}</h2>
+                <div className="project-screens__gallery">
+                  {PROJECT_SCREENS[index].map((Screen, i) => (
+                    <div key={i} className="project-screen" style={{ '--tint': tint }}>
+                      <div className="project-screen__frame"><Screen /></div>
+                      <p className="project-screen__label">{project.screens[i]}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* CTA */}
             <div className="project-cta card-glass">
@@ -129,10 +120,10 @@ export default async function ProjectDetailPage({ params }) {
               <Link
                 href={`/${lang}/projects/${nextProduct.slug}`}
                 className="project-next__link"
-                style={{ '--tint': PRODUCT_TINTS[nextIndex] }}
+                style={{ '--tint': nextProduct.tint }}
               >
                 <div>
-                  <h3>{PRODUCT_NAMES[nextIndex]}</h3>
+                  <h3>{nextProduct.name}</h3>
                   <p>{nextProduct.text}</p>
                 </div>
                 <span className="project-next__arrow">→</span>

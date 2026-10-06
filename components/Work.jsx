@@ -19,10 +19,10 @@ export default function Work({ t, lang }) {
 
         <div className="container">
           <div className="work__grid">
-            {PRODUCTS.map(({ tint, Mock, name }, i) => {
-              const { slug, text, metrics } = t.products[i];
+            {PRODUCTS.map(({ Mock }, i) => {
+              const { slug, text, metrics, name, tint } = t.products[i];
               return (
-                <article key={name} className="product reveal" style={{ '--tint': tint }}>
+                <article key={slug} className="product reveal" style={{ '--tint': tint }}>
                   <div className="product__stage"><Mock /></div>
                   <div className="product__info">
                     <h3>{name}</h3>
