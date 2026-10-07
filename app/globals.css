@@ -1,3 +1,13 @@
+/* Tailwind is here for the shadcn dashboard. Preflight is left out so the
+   marketing pages keep their own element styles. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
 /* ==========================================================================
    PhoenixTechs: design tokens
    ========================================================================== */
@@ -25,10 +35,42 @@
 
   --radius: 22px;
   --radius-lg: 32px;
+  --radius-control: 0.625rem;
   --container: 1240px;
   --gutter: clamp(16px, 4vw, 40px);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   color-scheme: dark;
+  --background: #f6f1ea;
+  --foreground: #1c1214;
+  --card: #fffcf8;
+  --card-foreground: #1c1214;
+  --popover: #fffcf8;
+  --popover-foreground: #1c1214;
+  --primary: #d9412b;
+  --primary-foreground: #ffffff;
+  --secondary: #f3ebe3;
+  --secondary-foreground: #1c1214;
+  --muted: #f3ebe3;
+  --muted-foreground: #6f645c;
+  --accent: #f8efe6;
+  --accent-foreground: #1c1214;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: #e6ddd3;
+  --input: #e0d5c8;
+  --ring: #ff8a4c;
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
 *,
@@ -347,7 +389,6 @@ main, .footer { position: relative; z-index: 2; }
 @keyframes draw { to { stroke-dashoffset: 0; } }
 @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } }
 
-
 /* ==========================================================================
    Tech strip
    ========================================================================== */
@@ -535,7 +576,6 @@ main, .footer { position: relative; z-index: 2; }
 }
 .product--cta h3 { font-size: clamp(30px, 2.8vw, 40px); line-height: 1.05; margin: 22px 0 10px; }
 .product--cta p { color: var(--cream-2); margin: 0 0 28px; }
-
 
 /* Mock UIs */
 .mock {
@@ -747,7 +787,6 @@ main, .footer { position: relative; z-index: 2; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
 }
-
 
 .lead-form__success[hidden] { display: none; }
 
@@ -1112,4 +1151,122 @@ main, .footer { position: relative; z-index: 2; }
   .project-hero__metric { min-width: 0; flex: 1 1 calc(50% - 5px); }
   .project-next__link { flex-direction: column; align-items: flex-start; }
   .project-next__arrow { align-self: flex-end; }
+}
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius-control) * 0.6);
+  --radius-md: calc(var(--radius-control) * 0.8);
+  --radius-lg: var(--radius-control);
+  --radius-xl: calc(var(--radius-control) * 1.4);
+  --radius-2xl: calc(var(--radius-control) * 1.8);
+  --radius-3xl: calc(var(--radius-control) * 2.2);
+  --radius-4xl: calc(var(--radius-control) * 2.6);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+/* Shadcn expects a solid default border. Scoped to the dashboard (and the
+   portaled dialogs/menus) so marketing borders stay as authored. */
+@layer base {
+  .dashboard,
+  .dashboard *,
+  [data-slot="dialog-content"],
+  [data-slot="dialog-content"] *,
+  [data-slot="select-content"],
+  [data-slot="select-content"] * {
+    border-style: solid;
+    border-width: 0;
+    border-color: var(--border);
+  }
+}
+
+/* Marketing resets (`color` / `font` on buttons, links, fields) are unlayered,
+   so they would beat shadcn utilities. Hand those properties back. */
+.dashboard,
+[data-slot="dialog-content"],
+[data-slot="select-content"] {
+  color-scheme: light;
+}
+.dashboard :where(button, input, select, textarea),
+[data-slot="dialog-content"] :where(button, input, select, textarea),
+[data-slot="select-content"] :where(button, input, select, textarea) {
+  color: revert-layer;
+  font-size: revert-layer;
+  font-weight: revert-layer;
+  line-height: revert-layer;
+}
+.dashboard :where(a),
+[data-slot="dialog-content"] :where(a) {
+  color: revert-layer;
+  text-decoration-line: revert-layer;
+}
+.dashboard :where(button:not(:disabled)),
+[data-slot="dialog-content"] :where(button:not(:disabled)),
+[data-slot="select-content"] :where(button:not(:disabled)) {
+  cursor: pointer;
 }

@@ -13,11 +13,15 @@ npm run build && npm start
 - `components/` — one component per section; `LeadForm.jsx` powers both forms
 - `components/Experience.jsx` — background scene, nav state, gentle fade-in reveals
 - `lib/scene.js` — WebGL scene (planet horizon, giant word, embers). Scroll poses live in `KEYS`.
-- `app/api/lead/route.js` — receives form submissions
+- `app/api/lead/route.js` — receives form submissions and stores them
+- `app/[lang]/dashboard/page.jsx` — leads dashboard (shadcn table)
 
 ## Leads
-Copy `.env.example` to `.env.local` and set `LEAD_WEBHOOK_URL` (Formspree, Make/Zapier, Slack, CRM…).
-Without it, leads are logged to the server console.
+Submissions are saved to `data/leads.json` (gitignored) and listed at `/dashboard`.
+Copy `.env.example` to `.env.local` to set:
+
+- `LEAD_WEBHOOK_URL` — also forward each lead (Formspree, Make/Zapier, Slack, CRM…). Optional.
+- `DASHBOARD_PASSWORD` — lock `/dashboard`. Leave empty while you are working locally.
 
 ## Logo
 `npm run logo` regenerates `public/logo*.svg`, `public/favicon.svg` and `components/logo-svg.js`

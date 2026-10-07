@@ -1,12 +1,9 @@
 import { NextResponse } from 'next/server';
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-const clip = (v, n = 2000) => (typeof v === 'string' ? v.trim().slice(0, n) : '');
+import { addLead, buildLead, validateLead } from '@/lib/leads';
 
 /**
- * Receives lead-form submissions.
- * Set LEAD_WEBHOOK_URL (Formspree, Make/Zapier, Slack, HubSpot proxy, ...) to forward
- * leads as JSON. Without it, leads are logged to the server console.
+ * Receives lead-form submissions and stores them for the dashboard.
+ * Set LEAD_WEBHOOK_URL to also forward the JSON (Formspree, Make/Zapier, Slack, CRM).
  */
 export async function POST(req) {
   let body;
@@ -16,26 +13,23 @@ export async function POST(req) {
     return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
   }
 
-  const lead = {
-    name: clip(body.name, 120),
-    email: clip(body.email, 200),
-    phone: clip(body.phone, 40),
-    company: clip(body.company, 160),
-    service: clip(body.service, 80),
-    message: clip(body.message),
-    source: clip(body.source, 40),
-    page: clip(body.page, 300),
-    receivedAt: new Date().toISOString(),
-  };
+  const lead = buildLead(body, 'site');
+  const fields = validateLead(lead);
+  if (Object.keys(fields).length) {
+    return NextResponse.json({ error: 'Missing or invalid fields', fields }, { status: 422 });
+  }
 
-  if (!lead.name || !EMAIL_RE.test(lead.email) || !lead.phone || !lead.service) {
-    return NextResponse.json({ error: 'Missing or invalid fields' }, { status: 422 });
+  try {
+    await addLead(lead);
+  } catch (err) {
+    console.error('[lead] could not store lead', err);
+    return NextResponse.json({ error: 'Could not store lead' }, { status: 500 });
   }
 
   const webhook = process.env.LEAD_WEBHOOK_URL;
   if (!webhook) {
-    console.info('[lead] LEAD_WEBHOOK_URL not set, logging lead:', lead);
-    return NextResponse.json({ ok: true });
+    console.info('[lead] stored', lead.id);
+    return NextResponse.json({ ok: true, id: lead.id });
   }
 
   const res = await fetch(webhook, {
@@ -45,8 +39,7 @@ export async function POST(req) {
   }).catch((err) => ({ ok: false, status: 0, err }));
 
   if (!res.ok) {
-    console.error('[lead] webhook failed', res.status, res.err ?? '');
-    return NextResponse.json({ error: 'Could not deliver lead' }, { status: 502 });
+    console.error('[lead] stored but webhook failed', lead.id, res.status, res.err ?? '');
   }
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, id: lead.id });
 }

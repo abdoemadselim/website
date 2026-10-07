@@ -10,13 +10,22 @@
     "logo": "node scripts/build-logo.mjs"
   },
   "dependencies": {
+    "@base-ui/react": "^1.8.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cn": "^0.4.0",
     "lucide-react": "^1.50.0",
     "next": "^16.3.8",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
-    "three": "^0.186.1"
+    "shadcn": "^4.21.4",
+    "tailwind-merge": "^3.7.0",
+    "three": "^0.186.1",
+    "tw-animate-css": "^1.4.0"
   },
   "devDependencies": {
-    "opentype.js": "^2.0.0"
+    "@tailwindcss/postcss": "^4.3.3",
+    "opentype.js": "^2.0.0",
+    "tailwindcss": "^4.3.3"
   }
 }
